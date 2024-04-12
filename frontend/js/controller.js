@@ -13,9 +13,9 @@ function loaddata()
         dataType: "json",
         success: function (response) {
             console.log("AJAX Request Success:");
-            var demoData = $("<div id=\"demo-data\">");
-            for(var i = 0; i < response.length; i++) {
-                var appointment = response[i][0];
+            let demoData = $("<div id=\"demo-data\">");
+            for(let i = 0; i < response.length; i++) {
+                let appointment = response[i][0];
                 demoData.append(
                     "<span>Title: <strong>" + appointment.title + "</strong> </span><br>" +
                     "<span>Location: " + appointment.location + " </span><br>" +
