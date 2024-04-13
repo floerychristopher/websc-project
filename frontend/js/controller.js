@@ -9,22 +9,36 @@ function loaddata()
         type: "GET",
         url: "../backend/serviceHandler.php",
         cache: false,
-        data: {method: "queryDemoAppointments"},
+        data: {method: "queryAppointments"},
         dataType: "json",
         success: function (response) {
-            console.log("AJAX Request Success:");
-            let demoData = $("<div id=\"demo-data\">");
-            for(let i = 0; i < response.length; i++) {
-                let appointment = response[i][0];
-                demoData.append(
-                    "<span>Title: <strong>" + appointment.title + "</strong> </span><br>" +
-                    "<span>Location: " + appointment.location + " </span><br>" +
-                    "<span>Date: " + appointment.date + " </span><br>" +
-                    "<span>From " + appointment.startTime + " </span> " +
-                    "<span>To " + appointment.endTime + " </span><br><br>"
+            console.log("AJAX Request Success!");
+            //Loop to display all appointments of the AJAX response
+            for(let i=0; i < response.length; i++) {
+                let newListItem = $("<li>");
+
+                let newAppointmentButton = $("<button>");
+                newAppointmentButton.attr("class", "btn btn-outline-dark appointmentButton");
+
+                let newDeleteButton = $("<button>");
+                newDeleteButton.attr("class", "btn btn-outline-danger deleteButton");
+
+                let appointment = response[i];
+
+                newAppointmentButton.append(
+                    "<span class='appointment-title'>" + appointment.title + "</span><br>" +
+                     "<span>Location: " + appointment.location + " </span>" + 
+                     "<br><span class='text-warning'>Expires: " + appointment.expirationDate + "<span>"
                 );
+
+                newDeleteButton.append(
+                    "<i class='fa-solid fa-trash fa-xl'></i>"
+                );
+
+                newListItem.append(newAppointmentButton);
+                newListItem.append(newDeleteButton);
+                $("#appointment-list").append(newListItem);
             }
-            $("body").append(demoData);
         },
         error: function (xhr, status, error) {
             console.log("AJAX Request Failed: " + status + " - " + error);

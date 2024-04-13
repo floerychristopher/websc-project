@@ -1,6 +1,7 @@
 <?php
 
-    include("./models/appointment.php");
+    require_once("./models/appointment.php");
+
     class DataHandler
     {
         public function queryDemoAppointments()
@@ -8,18 +9,34 @@
             $result = self::getDemoData();
             return $result;
         }
-
-        //Demo data for testing
-        private static function getDemoData()
+        public function queryAppointments()
         {
-            $demodata = [
-                [new Appointment(1, "Meeting", "Room 1", "2024-04-12", "09:00", "10:00")],
-                [new Appointment(2, "Consultation", "Room 2", "2024-04-13", "11:00", "12:00")],
-                [new Appointment(3, "Team Talk", "Room 3", "2024-04-14", "14:00", "15:00")],
-                [new Appointment(4, "Training", "Room 4", "2024-04-15", "16:00", "17:00")],
-            ];
-            return $demodata;
+            $result = self::getData();
+            return $result;
+        }
+
+        private static function getData() 
+        {
+            require_once("dbconn.php");
+            $sql = "SELECT a_id, a_title, a_location, a_expirationDate, a_date, a_startTime, a_endTime FROM appointment";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt, $id, $title, $location, $expirationDate, $date, $startTime, $endTime);
+            $appointments = [];
+            while(mysqli_stmt_fetch($stmt)) {
+                $appointments[] = [
+                    "id" => $id,
+                    "title" => $title, 
+                    "location" => $location,
+                    "expirationDate" => $expirationDate,
+                    "date" => $date,
+                    "startTime" => $startTime,
+                    "endTime" => $endTime
+                ];
+            }
+            mysqli_stmt_close($stmt);
+            mysqli_close($conn);
+            return $appointments;
         }
     }
-
 ?>

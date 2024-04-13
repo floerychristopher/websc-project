@@ -13,8 +13,8 @@
         function handleRequest($method)
         {
             switch ($method) {
-                case "queryDemoAppointments":
-                    $result = $this->dh->queryDemoAppointments();
+                case "queryAppointments":
+                    $result = $this->dh->queryAppointments();
                     break;
                 default:
                     $result = null;

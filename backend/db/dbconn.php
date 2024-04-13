@@ -1,38 +1,16 @@
 <?php
 
-    class Database
-    {
-        private $host = "localhost";
-        private $username = "root";
-        private $password = "";
-        private $dbname = "appointmentpicker";
-        private $conn;
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "appointmentpicker";
 
-        public function getConnection()
-        {
-            $this->conn = null;
-            try {
-                $this->conn = new mysqli($this->host, $this->username, $this->password, $this->dbname);
-                //Check connection
-                if ($this->conn->connect_error) {
-                    throw new Exception("Connection failed: " . $this->conn->connect_error);
-                }
-            //Catch error and display it
-            } catch (Exception $error) {
-                echo "Error: " . $error->getMessage();
-            }
-            //Return connection
-            return $this->conn;
-        }
-    }
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-    $database = new Database();
-    $conn = $database->getConnection();
-
-    if ($conn) {
-        echo "Connected successfully";
-    } else {
-        echo "Connection failed";
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
     }
     
 ?>

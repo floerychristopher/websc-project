@@ -1,12 +1,10 @@
 <?php
 
-    include("./logic/logic.php");
+    require_once("./logic/logic.php");
 
-    //$param = "";
     $method = "";
 
     isset($_GET["method"]) ? $method = $_GET["method"] : false;
-    //isset($_GET["param"]) ? $param = $_GET["param"] : false;
 
     $logic = new logic();
     $result = $logic->handleRequest($method);
