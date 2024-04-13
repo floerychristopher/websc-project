@@ -4,11 +4,6 @@
 
     class DataHandler
     {
-        public function queryDemoAppointments()
-        {
-            $result = self::getDemoData();
-            return $result;
-        }
         public function queryAppointments()
         {
             $result = self::getData();
