@@ -38,6 +38,7 @@ function loaddata()
                 newListItem.append(newAppointmentButton);
                 newListItem.append(newDeleteButton);
                 $("#appointment-list").append(newListItem);
+                // Christophers Kommentar
             }
         },
         error: function (xhr, status, error) {
