@@ -40,6 +40,7 @@ function loaddata()
                 $("#appointment-list").append(newListItem);
             }
         },
+        // Mustis Kommentar
         error: function (xhr, status, error) {
             console.log("AJAX Request Failed: " + status + " - " + error);
             console.log(xhr);
