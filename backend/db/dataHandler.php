@@ -13,20 +13,20 @@
         private static function getData() 
         {
             require_once("dbconn.php");
-            $sql = "SELECT a_id, a_title, a_location, a_expirationDate, a_date, a_startTime, a_endTime FROM appointment";
+            $sql = "SELECT a_id, a_title, a_location, a_date, a_expirationDate, a_duration, a_description FROM appointment";
             $stmt = mysqli_prepare($conn, $sql);
             mysqli_stmt_execute($stmt);
-            mysqli_stmt_bind_result($stmt, $id, $title, $location, $expirationDate, $date, $startTime, $endTime);
+            mysqli_stmt_bind_result($stmt, $id, $title, $location, $date, $expirationDate, $duration, $description);
             $appointments = [];
             while(mysqli_stmt_fetch($stmt)) {
                 $appointments[] = [
                     "id" => $id,
                     "title" => $title, 
                     "location" => $location,
-                    "expirationDate" => $expirationDate,
                     "date" => $date,
-                    "startTime" => $startTime,
-                    "endTime" => $endTime
+                    "expirationDate" => $expirationDate,
+                    "duration" => $duration,
+                    "description" => $description
                 ];
             }
             mysqli_stmt_close($stmt);

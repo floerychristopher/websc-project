@@ -1,0 +1,10 @@
+- Kennzeichnung von abgelaufenen Appointments [5 - 7]
+
+- Detailansicht:
+	- User kann Namen eingeben [1]
+	- Terminoptionen werden angezeigt [?]
+	- Terminoptionen könnten ausgewählt werden [?]
+	- User kann Kommentare hinterlassen [1]
+	- Button "Abstimmen" [1]
+
+- Appointments löschen [9]
