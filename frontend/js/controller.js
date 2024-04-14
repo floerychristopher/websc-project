@@ -38,10 +38,8 @@ function loaddata()
                 newListItem.append(newAppointmentButton);
                 newListItem.append(newDeleteButton);
                 $("#appointment-list").append(newListItem);
-                // Christophers Kommentar
             }
         },
-        // Mustis Kommentar
         error: function (xhr, status, error) {
             console.log("AJAX Request Failed: " + status + " - " + error);
             console.log(xhr);
