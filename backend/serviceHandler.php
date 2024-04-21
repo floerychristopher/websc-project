@@ -3,12 +3,15 @@
     require_once("./logic/logic.php");
 
     $method = "";
+    $appointmentId = NULL;
 
     isset($_GET["method"]) ? $method = $_GET["method"] : false;
+    isset($_POST["method"]) ? $method = $_POST["method"] : false;
+    isset($_POST["id"]) ? $appointmentId = $_POST["id"] : false;
 
     $logic = new logic();
-    $result = $logic->handleRequest($method);
-    if ($result == null) {
+    $result = $logic->handleRequest($method, $appointmentId);
+    if ($result == null || $result == false) {
         response("GET", 400, null);
     } else {
         response("GET", 200, $result);

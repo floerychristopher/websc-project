@@ -10,11 +10,14 @@
             $this->dh = new DataHandler();
         }
 
-        function handleRequest($method)
+        function handleRequest($method, $appointmentId)
         {
             switch ($method) {
                 case "queryAppointments":
                     $result = $this->dh->queryAppointments();
+                    break;
+                case "deleteAppointment":
+                    $result = $this->dh->deleteAppointment($appointmentId);
                     break;
                 default:
                     $result = null;
@@ -23,5 +26,4 @@
             return $result;
         }
     }
-
 ?>
