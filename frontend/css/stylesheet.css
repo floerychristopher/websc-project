@@ -62,4 +62,15 @@ body {
     color: red; 
     margin-right: 5px; 
 }
+.expired-appointment {
+    color: #ffffff; 
+    font-style: italic;
+    opacity: 0.5;
+        
+}
+.expired-appointment:before {
+    content: "\2718"; 
+    color: red; 
+    margin-right: 5px; 
+}
 
