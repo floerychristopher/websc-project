@@ -10,6 +10,12 @@
             return $result;
         }
 
+        public function deleteAppointment($appointmentId)
+        {
+            $result = self::deleteRow($appointmentId);
+            return $result;
+        }
+
         private static function getData() 
         {
             require_once("dbconn.php");
@@ -32,6 +38,19 @@
             mysqli_stmt_close($stmt);
             mysqli_close($conn);
             return $appointments;
+        }
+
+        private static function deleteRow($appointmentId) 
+        {
+            require_once("dbconn.php");
+            $sql = "DELETE FROM appointment WHERE a_id = ?";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "i", $appointmentId);
+            if(mysqli_stmt_execute($stmt)) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 ?>
