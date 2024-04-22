@@ -53,36 +53,13 @@ function displayAppointments(response)
     //Loop to display all appointments of the AJAX response
     for(let i=0; i < response.length; i++) {
         let appointment = response[i];
-        // TODO
-        // If Appointment is expired, add special class
-        
-        var currentDate = new Date();
-        
-         var expirationDate = new Date(appointment.expirationDate);
-            if (expirationDate < currentDate) {
-            // Termin ist abgelaufen, füge spezielle Klasse hinzu
-             newListItem = $("<li>").addClass("expired-appointment");
-             // Button deaktivieren
-             newAppointmentButton.prop("disabled", true);
-                newDeleteButton.prop("disabled", true);
-         } 
-            else {
-            // Termin ist nicht abgelaufen
-            let newListItem = $("<li>");
-        }
-
-
-
-
-
-
 
         let newListItem = $("<li>");
         newListItem.attr("id", appointment.id);
 
         let newAppointmentButton = $("<button>");
         newAppointmentButton.attr("class", "btn btn-outline-dark appointment-button");
-        newAppointmentButton.append(
+        newAppointmentButton.html(
             "<span class='appointment-title'>" + appointment.title + "</span><br>" +
              "<span>Location: " + appointment.location + " </span>" + 
              "<br><span class='text-warning'>Expires: " + appointment.expirationDate + "<span>"
@@ -99,6 +76,23 @@ function displayAppointments(response)
         newListItem.append(newAppointmentButton);
         newListItem.append(newDeleteButton);
         $("#appointment-list").append(newListItem);
+
+        // If Appointment is expired, add special class
+        var currentDate = new Date();
+        var expirationDate = new Date(appointment.expirationDate);
+            if (expirationDate < currentDate) {
+                // Button deaktivieren
+                newAppointmentButton.prop("disabled", true);
+                // opacitiy funktioniert wegen irgendwas hier, drüber schauen
+                newAppointmentButton.html(
+                    "<span class='appointment-title'>" + appointment.title + "</span><br>" +
+                     "<span>Location: " + appointment.location + " </span>" + 
+                     "<br><span class='text-danger'>Expired: " + appointment.expirationDate + "<span>"
+                );
+                newDeleteButton.prop("disabled", true);
+                // Termin ist abgelaufen, füge spezielle Klasse hinzu
+                newListItem.addClass("expired-appointment");
+            } 
     }
 }
 
