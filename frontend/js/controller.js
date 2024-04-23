@@ -89,7 +89,6 @@ function displayAppointments(response)
                      "<span>Location: " + appointment.location + " </span>" + 
                      "<br><span class='text-danger'>Expired: " + appointment.expirationDate + "<span>"
                 );
-                newDeleteButton.prop("disabled", true);
                 // Termin ist abgelaufen, füge spezielle Klasse hinzu
                 newListItem.addClass("expired-appointment");
             } 
