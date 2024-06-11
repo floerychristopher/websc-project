@@ -2,7 +2,7 @@
 
     $servername = "localhost";
     $username = "root";
-    $password = "";
+    $password = "if23b265";
     $dbname = "appointmentpicker";
 
     // Create connection
@@ -12,5 +12,3 @@
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
-    
-?>
